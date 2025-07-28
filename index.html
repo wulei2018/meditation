@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Primary Meta Tags -->
+    <title>5 Minute Meditation - Quick Daily Mindfulness Practice</title>
+    <meta name="title" content="5 Minute Meditation - Quick Daily Mindfulness Practice">
+    <meta name="description" content="Transform your day with just 5 minutes of meditation. Reduce stress, improve focus, and enhance well-being with our guided meditation sessions. Perfect for busy individuals.">
+    <meta name="keywords" content="meditation, mindfulness, 5 minute meditation, quick meditation, stress relief, mental health, guided meditation, breathing exercises, relaxation techniques, mindfulness practice">
+    <meta name="author" content="5 Minute Meditation">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://5minutemeditation.com/">
+    <meta property="og:title" content="5 Minute Meditation - Quick Daily Mindfulness Practice">
+    <meta property="og:description" content="Transform your day with just 5 minutes of meditation. Reduce stress, improve focus, and enhance well-being with our guided meditation sessions.">
+    <meta property="og:image" content="https://5minutemeditation.com/assets/images/social-share.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://5minutemeditation.com/">
+    <meta property="twitter:title" content="5 Minute Meditation - Quick Daily Mindfulness Practice">
+    <meta property="twitter:description" content="Transform your day with just 5 minutes of meditation. Reduce stress, improve focus, and enhance well-being with our guided meditation sessions.">
+    <meta property="twitter:image" content="https://5minutemeditation.com/assets/images/social-share.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+
+    <!-- Scripts and Styles -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .video-container {
+                margin: 0 -1rem;  /* 全宽显示 */
+            }
+            
+            .video-js {
+                max-height: 50vh;  /* 限制视频高度 */
+            }
+        }
+
+        /* 平板端优化 */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .video-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* 触摸屏优化 */
+        @media (hover: none) {
+            .interactive-element {
+                padding: 1rem;  /* 更大的点击区域 */
+            }
+        }
+
+        /* 确保视频容器响应式 */
+        .aspect-w-16.aspect-h-9 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .aspect-w-16.aspect-h-9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "5 Minute Meditation",
+        "description": "Transform your day with just 5 minutes of meditation. Reduce stress, improve focus, and enhance well-being with our guided meditation sessions.",
+        "url": "https://5minutemeditation.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://5minutemeditation.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Giscus Script -->
+    <script src="https://giscus.app/client.js"
+        data-repo="[OWNER]/[REPO]"
+        data-repo-id="[REPO-ID]"
+        data-category="Comments"
+        data-category-id="[CATEGORY-ID]"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    <script>
+        // Theme toggle for Giscus (if you want to match your site's theme)
+        function setGiscusTheme(theme) {
+            const iframe = document.querySelector('.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme } } },
+                'https://giscus.app'
+            );
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div id="app" class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto px-4 py-4 sm:py-6">
+                <div class="flex items-center justify-center">
+                    <img src="assets/images/logo.png" alt="5 Minute Meditation Logo" class="h-8 w-8 sm:h-12 sm:w-12 mr-3 sm:mr-4">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">5 Minute Meditation</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-12 sm:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Five Minutes of Meditation Equals One Hour of Deep Sleep</h2>
+                <p class="text-lg sm:text-xl">Start your journey to inner peace today</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 sm:py-12">
+            <!-- Controls and Video Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Controls Section -->
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md order-2 lg:order-1">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Customize Your Session</h3>
+                    
+                    <!-- Duration Selection -->
+                    <div class="mb-4 sm:mb-6">
+                        <label class="block text-gray-700 mb-2">Duration</label>
+                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                            <button v-for="duration in durations" 
+                                    :key="duration"
+                                    @click="selectedDuration = duration"
+                                    :class="['px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base', 
+                                            selectedDuration === duration 
+                                            ? 'bg-purple-500 text-white' 
+                                            : 'bg-gray-100 hover:bg-gray-200']">
+                                {{ duration }}min
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Style Selection -->
+                    <div class="mb-4 sm:mb-6">
+                        <label class="block text-gray-700 mb-2">Meditation Style</label>
+                        <select v-model="selectedStyle" class="w-full p-2 border rounded-md text-sm sm:text-base">
+                            <option v-for="style in styles" :key="style" :value="style">
+                                {{ style }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Shuffle Button -->
+                    <button @click="shuffleVideo" 
+                            class="w-full bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 text-sm sm:text-base">
+                        Try Another Video
+                    </button>
+                </div>
+
+                <!-- Video Player -->
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md order-1 lg:order-2">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <video-js id="meditation-video" 
+                                 class="video-js vjs-big-play-centered w-full h-full"
+                                 controls 
+                                 preload="auto">
+                            <source :src="currentVideo" type="video/mp4" />
+                        </video-js>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Information Sections -->
+            <div class="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- What is -->
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">What is 5 Minute Meditation?</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">
+                        5-minute meditation is a brief but powerful mindfulness practice that helps you pause, 
+                        breathe, and reset your mind. It's perfect for busy individuals who want to incorporate 
+                        meditation into their daily routine.
+                    </p>
+                </div>
+
+                <!-- How to -->
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">How to Do 5 Minute Meditation?</h3>
+                    <ol class="text-gray-600 list-decimal list-inside text-sm sm:text-base">
+                        <li>Find a quiet, comfortable space</li>
+                        <li>Sit in a relaxed position</li>
+                        <li>Focus on your breath</li>
+                        <li>Follow the guided meditation</li>
+                        <li>Gently return focus when distracted</li>
+                    </ol>
+                </div>
+
+                <!-- Why -->
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Why Do 5 Minute Meditation?</h3>
+                    <ul class="text-gray-600 list-disc list-inside text-sm sm:text-base">
+                        <li>Reduces stress and anxiety</li>
+                        <li>Improves focus and concentration</li>
+                        <li>Enhances emotional well-being</li>
+                        <li>Boosts energy levels</li>
+                        <li>Promotes better sleep</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- What They Say Section with Videos -->
+            <div class="mt-12 sm:mt-16">
+                <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center">What They Say About Meditation</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 video-container">
+                    <!-- Video 1 -->
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-md">
+                        <div class="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
+                            <iframe 
+                                class="w-full h-full rounded-lg"
+                                src="https://www.youtube.com/embed/bE1isdRRlPk"
+                                title="Meditation for Beginners"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Meditation for Beginners</h4>
+                        <p class="text-sm text-gray-600">Learn the basics of meditation and mindfulness practice.</p>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-md">
+                        <div class="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
+                            <iframe 
+                                class="w-full h-full rounded-lg"
+                                src="https://www.youtube.com/embed/iZwnXj0Ck1k"
+                                title="Daily Meditation Practice"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Daily Meditation Practice</h4>
+                        <p class="text-sm text-gray-600">Discover how to incorporate meditation into your daily routine.</p>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="bg-white p-3 sm:p-4 rounded-lg shadow-md">
+                        <div class="aspect-w-16 aspect-h-9 mb-3 sm:mb-4">
+                            <iframe 
+                                class="w-full h-full rounded-lg"
+                                src="https://www.youtube.com/embed/ma-A87D4OUg"
+                                title="Benefits of Meditation"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Benefits of Meditation</h4>
+                        <p class="text-sm text-gray-600">Explore the transformative effects of regular meditation practice.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-12">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Frequently Asked Questions</h3>
+                <div class="space-y-4">
+                    <div v-for="(faq, index) in faqs" :key="index" class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                        <h4 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{{ faq.question }}</h4>
+                        <p class="text-gray-600 text-sm sm:text-base">{{ faq.answer }}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Comments Section -->
+        <section class="container mx-auto px-4 py-8 sm:py-12">
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Community Discussion</h3>
+                <p class="text-gray-600 mb-6">Share your meditation experience or ask questions. We'd love to hear from you!</p>
+                
+                <!-- Giscus Comments -->
+                <div class="giscus"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-12 sm:mt-16">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-semibold mb-4">5 Minute Meditation</h4>
+                        <p class="text-gray-400 text-sm sm:text-base">Your daily dose of peace and tranquility</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-sm sm:text-base">
+                            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-semibold mb-4">Connect With Us</h4>
+                        <div class="flex space-x-4 text-sm sm:text-base">
+                            <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
+                            <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+                            <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm sm:text-base">
+                    <p>&copy; 2024 5 Minute Meditation. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+
+    <noscript>
+        <div class="text-center text-gray-600 py-4">
+            Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" class="text-blue-500 hover:text-blue-700">comments powered by Disqus.</a>
+        </div>
+    </noscript>
+</body>
+</html> 
