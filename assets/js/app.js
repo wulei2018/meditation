@@ -70,10 +70,7 @@ const app = createApp({
                     responsive: true
                 });
 
-                // Add error handling
-                this.videoPlayer.on('error', () => {
-                    this.videoError = 'Failed to load video. Please try another one.';
-                });
+              
 
                 // Add loading state handling
                 this.videoPlayer.on('loadstart', () => {
