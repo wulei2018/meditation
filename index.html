@@ -114,6 +114,29 @@
     }
     </script>
 
+    <!-- Giscus initialization -->
+    <script>
+        function sendMessage(message) {
+            const iframe = document.querySelector('.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        function setGiscusLanguage() {
+            sendMessage({
+                setConfig: {
+                    lang: 'en',
+                    theme: 'preferred_color_scheme'
+                }
+            });
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(setGiscusLanguage, 1000);
+        });
+    </script>
+
     <!-- Giscus Script -->
     <script src="https://giscus.app/client.js"
         data-repo="wulei2018/meditation"
