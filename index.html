@@ -237,6 +237,14 @@
                             <source :src="currentVideo" type="video/mp4" />
                         </video-js>
                     </div>
+                    <!-- Loading State -->
+                    <div v-if="isVideoLoading" class="mt-4 text-center text-gray-600">
+                        <p>Loading video...</p>
+                    </div>
+                    <!-- Error State -->
+                    <div v-if="videoError" class="mt-4 text-center text-red-600">
+                        <p>{{ videoError }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -396,7 +404,7 @@
 
     <noscript>
         <div class="text-center text-gray-600 py-4">
-            Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" class="text-blue-500 hover:text-blue-700">comments powered by Disqus.</a>
+            Please enable JavaScript to view the comments powered by Giscus.
         </div>
     </noscript>
 </body>

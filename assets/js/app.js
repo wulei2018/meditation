@@ -16,6 +16,8 @@ const app = createApp({
             currentVideo: null,
             videoPlayer: null,
             availableVideos: {},
+            isVideoLoading: false,
+            videoError: null,
             faqs: [
                 {
                     question: 'Can I meditate at any time of the day?',
@@ -47,8 +49,8 @@ const app = createApp({
     },
     methods: {
         async loadAvailableVideos() {
-            // 在实际项目中，这个信息应该从服务器获取
-            // 这里我们直接硬编码可用的视频
+            // In a production environment, this information should be fetched from the server
+            // For now, we'll hardcode the available videos
             this.availableVideos = {
                 3: Array.from({length: 13}, (_, i) => i + 1),  // 1-13
                 5: Array.from({length: 13}, (_, i) => i + 1),
@@ -59,17 +61,40 @@ const app = createApp({
             };
         },
         initializeVideoPlayer() {
-            this.videoPlayer = videojs('meditation-video', {
-                controls: true,
-                autoplay: false,
-                preload: 'auto',
-                fluid: true,
-                responsive: true
-            });
+            try {
+                this.videoPlayer = videojs('meditation-video', {
+                    controls: true,
+                    autoplay: false,
+                    preload: 'auto',
+                    fluid: true,
+                    responsive: true
+                });
+
+                // Add error handling
+                this.videoPlayer.on('error', () => {
+                    this.videoError = 'Failed to load video. Please try another one.';
+                });
+
+                // Add loading state handling
+                this.videoPlayer.on('loadstart', () => {
+                    this.isVideoLoading = true;
+                    this.videoError = null;
+                });
+
+                this.videoPlayer.on('loadeddata', () => {
+                    this.isVideoLoading = false;
+                });
+            } catch (error) {
+                console.error('Failed to initialize video player:', error);
+                this.videoError = 'Failed to initialize video player. Please refresh the page.';
+            }
         },
         getRandomVideo(duration) {
             const videos = this.availableVideos[duration] || [];
-            if (videos.length === 0) return null;
+            if (videos.length === 0) {
+                this.videoError = 'No videos available for selected duration.';
+                return null;
+            }
             
             const randomIndex = Math.floor(Math.random() * videos.length);
             const videoNumber = videos[randomIndex];
@@ -85,7 +110,7 @@ const app = createApp({
         },
         shuffleVideo() {
             this.setRandomVideo();
-            if (this.videoPlayer) {
+            if (this.videoPlayer && !this.videoError) {
                 this.videoPlayer.play();
             }
         }
@@ -95,7 +120,7 @@ const app = createApp({
             this.setRandomVideo();
         },
         selectedStyle(newStyle) {
-            // 目前风格改变时也随机换视频
+            // Currently also change video when style changes
             this.setRandomVideo();
         }
     }
