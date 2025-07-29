@@ -44,8 +44,34 @@ const app = createApp({
         await this.loadAvailableVideos();
         this.initializeVideoPlayer();
         this.setRandomVideo();
+        this.initializeGiscus();
     },
     methods: {
+        initializeGiscus() {
+            // 创建giscus script元素
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', 'wulei2018/meditation');
+            script.setAttribute('data-repo-id', 'R_kgDOPUH_yg');
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', 'DIC_kwDOPUH_ys4CthSD');
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'preferred_color_scheme');
+            script.setAttribute('data-lang', 'en');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+
+            // 找到评论容器并添加script
+            const giscusContainer = document.querySelector('.giscus');
+            if (giscusContainer) {
+                giscusContainer.innerHTML = '';
+                giscusContainer.appendChild(script);
+            }
+        },
         async loadAvailableVideos() {
             // 在实际项目中，这个信息应该从服务器获取
             // 这里我们直接硬编码可用的视频
